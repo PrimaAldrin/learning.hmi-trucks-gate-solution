@@ -15,7 +15,10 @@ namespace HMI_Truck_s_Gate_Solution{
         }
 
         private void Monitor_Load(object sender, EventArgs e){
-
+            String[] portList = System.IO.Ports.SerialPort.GetPortNames(); // Getting the available ports
+            foreach(String portName in portList){
+                comboBox1.Items.Add(portName);
+            }
         }
     }
 }

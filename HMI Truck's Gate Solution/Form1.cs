@@ -8,17 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HMI_Truck_s_Gate_Solution
-{
-    public partial class Monitor : Form
-    {
-        public Monitor()
-        {
+namespace HMI_Truck_s_Gate_Solution{
+    public partial class Monitor : Form{
+        public Monitor(){
             InitializeComponent();
         }
 
-        private void Monitor_Load(object sender, EventArgs e)
-        {
+        private void Monitor_Load(object sender, EventArgs e){
 
         }
     }

@@ -20,5 +20,20 @@ namespace HMI_Truck_s_Gate_Solution{
                 comboBox1.Items.Add(portName);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e){
+            serialPort1.PortName = comboBox1.Text;
+            serialPort1.Open();
+            Monitor.ActiveForm.Text = serialPort1.PortName + "is Connected";
+        }
+
+        private void button2_Click(object sender, EventArgs e){
+            serialPort1.Close();
+            Monitor.ActiveForm.Text = "Serial Communication";
+        }
+
+        private void button3_Click(object sender, EventArgs e){
+            serialPort1.Write(textBox1.Text);
+        }
     }
 }

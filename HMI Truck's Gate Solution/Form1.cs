@@ -16,5 +16,10 @@ namespace HMI_Truck_s_Gate_Solution
         {
             InitializeComponent();
         }
+
+        private void Monitor_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

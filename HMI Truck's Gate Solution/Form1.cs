@@ -35,5 +35,20 @@ namespace HMI_Truck_s_Gate_Solution{
         private void button3_Click(object sender, EventArgs e){
             serialPort1.Write(textBox1.Text);
         }
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e){
+            Tampilkan(serialPort1.ReadExisting());
+        }
+
+        private delegate void TampilkanDelegate(object item);
+
+        private void Tampilkan(object item){
+            if (InvokeRequired){
+                listBox1.Invoke(new TampilkanDelegate(Tampilkan), item);
+            }
+            else{
+                listBox1.Items.Add(item);
+            }
+        }
     }
 }

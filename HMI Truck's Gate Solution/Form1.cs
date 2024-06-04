@@ -31,6 +31,7 @@ namespace HMI_Truck_s_Gate_Solution{
         private void button1_Click(object sender, EventArgs e){
             try{
                 serialPort1.PortName = comboBox1.Text;
+                serialPort1.NewLine = "\r\n";
                 serialPort1.Open();
                 Monitor.ActiveForm.Text = serialPort1.PortName + " is Connected";
             }
@@ -46,8 +47,8 @@ namespace HMI_Truck_s_Gate_Solution{
             if (serialPort1.IsOpen){
                 button1.Enabled = false;
 
-                button2.Enabled = true; // enable the dosconnect button when its connected
-                button3.Enabled = true; // you can send data when its connected
+                button2.Enabled = true;
+                button3.Enabled = true;
             }
         }
 
@@ -60,7 +61,7 @@ namespace HMI_Truck_s_Gate_Solution{
         }
 
         private void button3_Click(object sender, EventArgs e){
-            serialPort1.Write(textBox1.Text);
+            serialPort1.WriteLine(textBox1.Text);
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e){

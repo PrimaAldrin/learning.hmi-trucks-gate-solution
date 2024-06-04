@@ -23,24 +23,40 @@ namespace HMI_Truck_s_Gate_Solution{
             // Fix error empty port
             button1.Enabled = false;
             button2.Enabled = false;
+
+            // fix error sending data while the port is closed
+            button3.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e){
-            serialPort1.PortName = comboBox1.Text;
-            serialPort1.Open();
-            Monitor.ActiveForm.Text = serialPort1.PortName + " is Connected";
+            try{
+                serialPort1.PortName = comboBox1.Text;
+                serialPort1.Open();
+                Monitor.ActiveForm.Text = serialPort1.PortName + " is Connected";
+            }
+            catch(Exception ex){
+                Monitor.ActiveForm.Text = "Error: " + ex.Message.ToString();
+                // Fix error when clicking the connect button twice
+                button1.Enabled = true;
 
-            // Fix error when clicking the connect button twice
-            button1.Enabled = false;
+                button2.Enabled = false; // enable the dosconnect button when its connected
+                button3.Enabled = false; // you can send data when its connected
+            }
 
-            button2.Enabled = true;
+            if (serialPort1.IsOpen){
+                button1.Enabled = false;
+
+                button2.Enabled = true; // enable the dosconnect button when its connected
+                button3.Enabled = true; // you can send data when its connected
+            }
         }
 
         private void button2_Click(object sender, EventArgs e){
             serialPort1.Close();
             Monitor.ActiveForm.Text = "Serial Communication";
 
-            button1.Enabled = true;
+            button1.Enabled = true; // You can connect again after it is disconnected
+            button3.Enabled = false; // You cant send data when you are disconnected
         }
 
         private void button3_Click(object sender, EventArgs e){

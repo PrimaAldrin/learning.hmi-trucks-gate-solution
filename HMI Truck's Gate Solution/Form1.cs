@@ -19,17 +19,25 @@ namespace HMI_Truck_s_Gate_Solution{
             foreach(String portName in portList){
                 comboBox1.Items.Add(portName);
             }
+
+            // Fix error empty port
+            button1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e){
             serialPort1.PortName = comboBox1.Text;
             serialPort1.Open();
-            Monitor.ActiveForm.Text = serialPort1.PortName + "is Connected";
+            Monitor.ActiveForm.Text = serialPort1.PortName + " is Connected";
+
+            // Fix error when clicking the connect button twice
+            button1.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e){
             serialPort1.Close();
             Monitor.ActiveForm.Text = "Serial Communication";
+
+            button1.Enabled = true;
         }
 
         private void button3_Click(object sender, EventArgs e){
@@ -49,6 +57,10 @@ namespace HMI_Truck_s_Gate_Solution{
             else{
                 listBox1.Items.Add(item);
             }
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e){
+            button1.Enabled = true;
         }
     }
 }

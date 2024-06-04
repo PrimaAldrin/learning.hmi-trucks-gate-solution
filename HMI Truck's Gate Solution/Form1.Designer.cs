@@ -47,6 +47,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // button1
             // 
@@ -105,6 +106,9 @@
             // 
             // serialPort1
             // 
+            this.serialPort1.DataBits = 7;
+            this.serialPort1.Parity = System.IO.Ports.Parity.Even;
+            this.serialPort1.StopBits = System.IO.Ports.StopBits.Two;
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // listBox1

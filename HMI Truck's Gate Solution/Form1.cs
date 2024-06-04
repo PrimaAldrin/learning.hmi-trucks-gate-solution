@@ -22,6 +22,7 @@ namespace HMI_Truck_s_Gate_Solution{
 
             // Fix error empty port
             button1.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e){
@@ -31,6 +32,8 @@ namespace HMI_Truck_s_Gate_Solution{
 
             // Fix error when clicking the connect button twice
             button1.Enabled = false;
+
+            button2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e){
